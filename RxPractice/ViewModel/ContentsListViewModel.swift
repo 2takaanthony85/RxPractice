@@ -29,8 +29,9 @@ class ContentsListViewModel {
     //viewModelからviewへの出力
     //todoListに表示するtodoのデータ
     private let todosStream = BehaviorSubject<[Todo]>(value: [])
-    //todo追加イベントの通知
-    private let addTodoItemStream = BehaviorSubject<[Todo]>(value: [])
+    //遷移イベントの通知
+    //BehaviorSubjectだと初期時にEditTodoItemViewControllerに遷移してしまう。。。（2018/12/4 まだ理由わかっていない）
+    private let addTodoItemStream = PublishSubject<[Todo]>()
     
     //viewに公開
     var todo: Observable<[Todo]> {
@@ -44,7 +45,7 @@ class ContentsListViewModel {
     
     init() {
         
-        var tm = TodoManager.init()
+        var tm = TodoManager.instance
         
         viewWillAppearStream
             .flatMapLatest { _ -> Observable<[Todo]> in

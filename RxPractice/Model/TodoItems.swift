@@ -17,9 +17,9 @@ struct TodoManager {
     
     private var todo: [Todo]
     
-    init() {
-        todo = []
-    }
+    static var instance = TodoManager()
+    
+    private init() { todo = [] }
     
     mutating func create(title: String) {
         todo.append(Todo(title: title, content: ""))

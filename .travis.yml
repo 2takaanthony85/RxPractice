@@ -1,0 +1,6 @@
+language: objective-c
+
+osx_image: xcode10.1
+
+script: 
+   - xcodebuild clean build -workspace RxPractice.xcworkspace -scheme RxPractice

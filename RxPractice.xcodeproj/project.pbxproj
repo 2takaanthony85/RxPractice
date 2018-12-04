@@ -17,6 +17,9 @@
 		596237F221B3B47F00C367C5 /* TodoItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596237F121B3B47E00C367C5 /* TodoItems.swift */; };
 		596237F421B3B57100C367C5 /* ContentsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596237F321B3B57100C367C5 /* ContentsListViewModel.swift */; };
 		596237F621B3B7FC00C367C5 /* ContentsListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596237F521B3B7FC00C367C5 /* ContentsListDataSource.swift */; };
+		596237FA21B6B8FB00C367C5 /* EditTodoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596237F821B6B8FB00C367C5 /* EditTodoItemViewController.swift */; };
+		596237FB21B6B8FB00C367C5 /* EditTodoItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 596237F921B6B8FB00C367C5 /* EditTodoItemViewController.xib */; };
+		596237FD21B6C49700C367C5 /* EditTodoItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596237FC21B6C49700C367C5 /* EditTodoItemViewModel.swift */; };
 		59D9617321AD9834007CD73C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D9617221AD9834007CD73C /* AppDelegate.swift */; };
 		59D9617521AD9834007CD73C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D9617421AD9834007CD73C /* ViewController.swift */; };
 		59D9617821AD9834007CD73C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59D9617621AD9834007CD73C /* Main.storyboard */; };
@@ -62,6 +65,9 @@
 		596237F121B3B47E00C367C5 /* TodoItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItems.swift; sourceTree = "<group>"; };
 		596237F321B3B57100C367C5 /* ContentsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsListViewModel.swift; sourceTree = "<group>"; };
 		596237F521B3B7FC00C367C5 /* ContentsListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsListDataSource.swift; sourceTree = "<group>"; };
+		596237F821B6B8FB00C367C5 /* EditTodoItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTodoItemViewController.swift; sourceTree = "<group>"; };
+		596237F921B6B8FB00C367C5 /* EditTodoItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditTodoItemViewController.xib; sourceTree = "<group>"; };
+		596237FC21B6C49700C367C5 /* EditTodoItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTodoItemViewModel.swift; sourceTree = "<group>"; };
 		59D9616F21AD9834007CD73C /* RxPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59D9617221AD9834007CD73C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		59D9617421AD9834007CD73C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +130,8 @@
 			children = (
 				59D9617421AD9834007CD73C /* ViewController.swift */,
 				596237E721B3828600C367C5 /* ContentsListViewController.swift */,
+				596237F821B6B8FB00C367C5 /* EditTodoItemViewController.swift */,
+				596237F921B6B8FB00C367C5 /* EditTodoItemViewController.xib */,
 				596237F521B3B7FC00C367C5 /* ContentsListDataSource.swift */,
 				596237EC21B3AE3400C367C5 /* ContentsListCell.swift */,
 				596237ED21B3AE3400C367C5 /* ContentsListCell.xib */,
@@ -137,6 +145,7 @@
 			children = (
 				596237D921B24B2E00C367C5 /* ViewModel.swift */,
 				596237F321B3B57100C367C5 /* ContentsListViewModel.swift */,
+				596237FC21B6C49700C367C5 /* EditTodoItemViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -330,6 +339,7 @@
 				596237EA21B3828600C367C5 /* ContentsListViewController.xib in Resources */,
 				59D9617D21AD9835007CD73C /* LaunchScreen.storyboard in Resources */,
 				59D9617A21AD9835007CD73C /* Assets.xcassets in Resources */,
+				596237FB21B6B8FB00C367C5 /* EditTodoItemViewController.xib in Resources */,
 				59D9617821AD9834007CD73C /* Main.storyboard in Resources */,
 				596237EF21B3AE3400C367C5 /* ContentsListCell.xib in Resources */,
 			);
@@ -434,9 +444,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				596237E921B3828600C367C5 /* ContentsListViewController.swift in Sources */,
+				596237FD21B6C49700C367C5 /* EditTodoItemViewModel.swift in Sources */,
 				596237E121B37F7900C367C5 /* Certificate.swift in Sources */,
 				596237F221B3B47F00C367C5 /* TodoItems.swift in Sources */,
 				596237F421B3B57100C367C5 /* ContentsListViewModel.swift in Sources */,
+				596237FA21B6B8FB00C367C5 /* EditTodoItemViewController.swift in Sources */,
 				59D9617521AD9834007CD73C /* ViewController.swift in Sources */,
 				596237DA21B24B2E00C367C5 /* ViewModel.swift in Sources */,
 				596237F621B3B7FC00C367C5 /* ContentsListDataSource.swift in Sources */,
@@ -618,6 +630,7 @@
 			baseConfigurationReference = 63CDD7FD1C1EC261F8CFFD8E /* Pods-RxPractice.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LC262FF5YU;
 				INFOPLIST_FILE = RxPractice/Info.plist;
@@ -637,6 +650,7 @@
 			baseConfigurationReference = 35A528572742D21D25B4342F /* Pods-RxPractice.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LC262FF5YU;
 				INFOPLIST_FILE = RxPractice/Info.plist;

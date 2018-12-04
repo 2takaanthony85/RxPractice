@@ -25,7 +25,6 @@ class ContentsListViewController: UIViewController, UITableViewDelegate {
         
         let nib = UINib(nibName: "ContentsListCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "ContentsListCell")
-        
         bind()
     }
     
@@ -52,6 +51,7 @@ class ContentsListViewController: UIViewController, UITableViewDelegate {
             .bind { [unowned self] todo in
                 self.datasource.items = todo
                 self.tableView.reloadData()
+                //self.navigateToEditTodoItemVC()
             }
             .disposed(by: disposeBag)
     }
@@ -70,6 +70,11 @@ class ContentsListViewController: UIViewController, UITableViewDelegate {
         alert.addAction(ok)
         alert.addAction(cancel)
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func navigateToEditTodoItemVC() {
+        let editTodoItemVC = EditTodoItemViewController()
+        self.navigationController?.pushViewController(editTodoItemVC, animated: true)
     }
 
 }
