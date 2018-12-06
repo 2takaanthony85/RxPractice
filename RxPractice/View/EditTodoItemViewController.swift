@@ -16,9 +16,23 @@ class EditTodoItemViewController: UIViewController {
     
     @IBOutlet weak var ContentTextView: UITextView!
     
+    var todo: Todo = Todo(title: "", content: "")
+    
+    init(dependency: Todo) {
+        super.init(nibName: nil, bundle: nil)
+        self.todo.title = dependency.title
+        self.todo.content = dependency.content
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        TitleTextField.text = todo.title
+        ContentTextView.text = todo.content
         
     }
 

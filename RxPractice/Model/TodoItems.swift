@@ -37,4 +37,8 @@ struct TodoManager {
     mutating func delete(index: Int) {
         todo.remove(at: index)
     }
+    
+    func getLastTodo() -> Todo {
+        return (todo.last != nil) ? todo.last! : Todo(title: "", content: "")
+    }
 }
