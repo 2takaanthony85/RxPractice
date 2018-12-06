@@ -12,6 +12,10 @@ import RxCocoa
 
 class EditTodoItemViewController: UIViewController {
 
+    @IBOutlet weak var TitleTextField: UITextField!
+    
+    @IBOutlet weak var ContentTextView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

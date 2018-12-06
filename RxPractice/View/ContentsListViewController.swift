@@ -49,9 +49,9 @@ class ContentsListViewController: UIViewController, UITableViewDelegate {
         
         vm.addTodoItem
             .bind { [unowned self] todo in
-                self.datasource.items = todo
-                self.tableView.reloadData()
-                //self.navigateToEditTodoItemVC()
+                //self.datasource.items = todo
+                //self.tableView.reloadData()
+                self.navigateToEditTodoItemVC()
             }
             .disposed(by: disposeBag)
     }

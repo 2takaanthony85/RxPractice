@@ -12,6 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditTodoItemViewController" customModule="RxPractice" customModuleProvider="target">
             <connections>
+                <outlet property="ContentTextView" destination="bLn-2S-M1M" id="oFj-os-mnf"/>
+                <outlet property="TitleTextField" destination="ppr-LN-Zjm" id="SJM-ce-9ll"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
