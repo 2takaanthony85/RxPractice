@@ -25,6 +25,7 @@ class ContentsListViewController: UIViewController, UITableViewDelegate {
         
         let nib = UINib(nibName: "ContentsListCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "ContentsListCell")
+        tableView.delegate = datasource
         bind()
     }
     
@@ -47,6 +48,14 @@ class ContentsListViewController: UIViewController, UITableViewDelegate {
                 //CreateTodoViewControllerに遷移
                 let nav = UINavigationController(rootViewController: CreateTodoViewController())
                 self.present(nav, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
+        
+        datasource.cellTapped
+            .subscribe(onNext: { [unowned self] indexPath in
+                print(indexPath.row)
+                let vc = EditTodoViewController(index: indexPath.row)
+                self.navigationController?.pushViewController(vc, animated: true)
             })
             .disposed(by: disposeBag)
         

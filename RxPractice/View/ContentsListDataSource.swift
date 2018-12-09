@@ -11,11 +11,17 @@ import RxSwift
 import RxCocoa
 import UIKit
 
-class ContentsListDataSource: NSObject, RxTableViewDataSourceType, UITableViewDataSource {
+class ContentsListDataSource: NSObject, RxTableViewDataSourceType, UITableViewDataSource, UITableViewDelegate {
     
     typealias Element = [Todo]
     
     var items: [Todo] = []
+    
+    private let cellTapIndexStream = PublishSubject<IndexPath>()
+    
+    var cellTapped: Observable<IndexPath> {
+        return cellTapIndexStream.asObservable()
+    }
     
     func tableView(_ tableView: UITableView, observedEvent: Event<[Todo]>) {
         Binder(self) { target, element in
@@ -34,6 +40,11 @@ class ContentsListDataSource: NSObject, RxTableViewDataSourceType, UITableViewDa
         let element = items[indexPath.row].title
         cell.textLabel?.text = element
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("cell tapped")
+        cellTapIndexStream.onNext(indexPath)
     }
     
 }
