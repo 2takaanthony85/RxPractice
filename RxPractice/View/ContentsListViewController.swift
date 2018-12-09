@@ -41,19 +41,22 @@ class ContentsListViewController: UIViewController, UITableViewDelegate {
         
         addButton.rx.tap
             .subscribe({ [unowned self] _ in
-                self.showAlert(completion: { text in
-                    self.vm.addTodoItemButtonDidTap.onNext(text)
-                })
+//                self.showAlert(completion: { text in
+//                    self.vm.addTodoItemButtonDidTap.onNext(text)
+//                })
+                //CreateTodoViewControllerに遷移
+                let nav = UINavigationController(rootViewController: CreateTodoViewController())
+                self.present(nav, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
         
-        vm.addTodoItem
-            .bind { [unowned self] num in
-                //self.datasource.items = todo
-                //self.tableView.reloadData()
-                self.navigateToEditTodoItemVC(num)
-            }
-            .disposed(by: disposeBag)
+//        vm.addTodoItem
+//            .bind { [unowned self] num in
+//                //self.datasource.items = todo
+//                //self.tableView.reloadData()
+//                self.navigateToEditTodoItemVC(num)
+//            }
+//            .disposed(by: disposeBag)
     }
 
     func showAlert(completion: @escaping (String) -> ()) {

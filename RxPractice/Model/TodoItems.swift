@@ -21,9 +21,8 @@ class TodoManager {
     
     private init() { todo = [] }
     
-    func create(title: String) -> Int {
-        todo.append(Todo(title: title, content: ""))
-        return todo.count - 1
+    func create(item: Todo) {
+        todo.append(item)
     }
     
     func read() -> [Todo] {
@@ -34,13 +33,9 @@ class TodoManager {
         return todo[index]
     }
     
-    func update(index: Int, title: String?, content: String?) {
-        if let _title = title {
-            todo[index].title = _title
-        }
-        if let _content = content {
-            todo[index].content = _content
-        }
+    func update(index: Int, title: String, content: String) {
+        todo[index].title = title
+        todo[index].content = content
     }
     
     func delete(index: Int) {
