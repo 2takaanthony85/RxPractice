@@ -48,10 +48,10 @@ class ContentsListViewController: UIViewController, UITableViewDelegate {
             .disposed(by: disposeBag)
         
         vm.addTodoItem
-            .bind { [unowned self] todo in
+            .bind { [unowned self] num in
                 //self.datasource.items = todo
                 //self.tableView.reloadData()
-                self.navigateToEditTodoItemVC(todo)
+                self.navigateToEditTodoItemVC(num)
             }
             .disposed(by: disposeBag)
     }
@@ -72,8 +72,8 @@ class ContentsListViewController: UIViewController, UITableViewDelegate {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func navigateToEditTodoItemVC(_ t: Todo) {
-        let editTodoItemVC = EditTodoItemViewController.init(dependency: t)
+    func navigateToEditTodoItemVC(_ num: Int) {
+        let editTodoItemVC = EditTodoItemViewController.init(dependency: num)
         self.navigationController?.pushViewController(editTodoItemVC, animated: true)
     }
 

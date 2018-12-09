@@ -13,7 +13,7 @@ struct Todo {
     var content: String
 }
 
-struct TodoManager {
+class TodoManager {
     
     private var todo: [Todo]
     
@@ -21,24 +21,30 @@ struct TodoManager {
     
     private init() { todo = [] }
     
-    mutating func create(title: String) {
+    func create(title: String) -> Int {
         todo.append(Todo(title: title, content: ""))
+        return todo.count - 1
     }
     
     func read() -> [Todo] {
         return todo
     }
     
-    mutating func update(index: Int, title: String, content: String) {
-        todo[index].title = title
-        todo[index].content = content
+    func getTodo(index: Int) -> Todo {
+        return todo[index]
     }
     
-    mutating func delete(index: Int) {
+    func update(index: Int, title: String?, content: String?) {
+        if let _title = title {
+            todo[index].title = _title
+        }
+        if let _content = content {
+            todo[index].content = _content
+        }
+    }
+    
+    func delete(index: Int) {
         todo.remove(at: index)
     }
     
-    func getLastTodo() -> Todo {
-        return (todo.last != nil) ? todo.last! : Todo(title: "", content: "")
-    }
 }

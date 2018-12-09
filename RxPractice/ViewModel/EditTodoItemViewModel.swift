@@ -13,6 +13,9 @@ import RxSwift
 class EditTodoItemViewModel {
     
     //viewから入力
+    //表示イベント
+    private let viewWillAppearStream = PublishSubject<Void>()
+    
     //titleの変更
     private let titleEditStream = PublishSubject<String>()
     
@@ -20,6 +23,11 @@ class EditTodoItemViewModel {
     private let contentEditStream = PublishSubject<String>()
     
     //viewにはobserverとして公開
+    //表示イベント
+    var viewWillAppear: AnyObserver<()> {
+        return viewWillAppearStream.asObserver()
+    }
+    
     //titleの変更
     var titleEdit: AnyObserver<String> {
         return titleEditStream.asObserver()
@@ -30,26 +38,40 @@ class EditTodoItemViewModel {
         return contentEditStream.asObserver()
     }
     
+    //出力
+    private let EditTodoStream = PublishSubject<Todo>()
+    
+    var editTodo: Observable<Todo> {
+        return EditTodoStream.asObservable()
+    }
+    
     let disposeBag = DisposeBag()
     
-    //変更される前のTodo
-    let todoBeforeEditing: Todo
+    let indexOfTodo: Int
     
-    init(dependency: Todo) {
+    init(dependency: Int) {
         
-        self.todoBeforeEditing = dependency
+        indexOfTodo = dependency
         
-        var tm = TodoManager.instance
+        let tm = TodoManager.instance
+        
+        viewWillAppearStream
+            .flatMapLatest { [unowned self] _ -> Observable<Todo> in
+                let todo = tm.getTodo(index: self.indexOfTodo)
+                return Observable.just(todo)
+            }
+            .bind(to: EditTodoStream)
+            .disposed(by: disposeBag)
         
         titleEditStream
-            .subscribe(onNext: { edittedTitle in
-                print(edittedTitle)
+            .subscribe(onNext: { [unowned self] edittedTitle in
+                tm.update(index: self.indexOfTodo, title: edittedTitle, content: nil)
             })
             .disposed(by: disposeBag)
         
         contentEditStream
-            .subscribe(onNext: { edittedContent in
-                print(edittedContent)
+            .subscribe(onNext: { [unowned self] edittedContent in
+                tm.update(index: self.indexOfTodo, title: nil, content: edittedContent)
             })
             .disposed(by: disposeBag)
         

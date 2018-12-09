@@ -32,7 +32,7 @@ class ContentsListViewModel {
     //遷移イベントの通知
     //BehaviorSubjectだと初期時にEditTodoItemViewControllerに遷移してしまう。。。（2018/12/4 まだ理由わかっていない）
     //private let addTodoItemStream = PublishSubject<[Todo]>()
-    private let addTodoItemStream = PublishSubject<Todo>()
+    private let addTodoItemStream = PublishSubject<Int>()
     
     //viewに公開
     var todo: Observable<[Todo]> {
@@ -41,7 +41,7 @@ class ContentsListViewModel {
 //    var addTodoItem: Observable<[Todo]> {
 //        return addTodoItemStream.asObservable()
 //    }
-    var addTodoItem: Observable<Todo> {
+    var addTodoItem: Observable<Int> {
         return addTodoItemStream.asObservable()
     }
     
@@ -49,7 +49,7 @@ class ContentsListViewModel {
     
     init() {
         
-        var tm = TodoManager.instance
+        let tm = TodoManager.instance
         
         viewWillAppearStream
             .flatMapLatest { _ -> Observable<[Todo]> in
@@ -59,13 +59,9 @@ class ContentsListViewModel {
             .disposed(by: disposeBag)
         
         addTodoItemButtonTapStream
-//            .flatMapLatest({ title -> Observable<[Todo]> in
-//                tm.create(title: title)
-//                return Observable.just(tm.read())
-//            })
-            .flatMapLatest({ title -> Observable<Todo> in
-                tm.create(title: title)
-                return Observable.just(tm.getLastTodo())
+            .flatMapLatest({ title -> Observable<Int> in
+                let index = tm.create(title: title)
+                return Observable.just(index)
             })
             .bind(to: addTodoItemStream)
             .disposed(by: disposeBag)

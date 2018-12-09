@@ -16,15 +16,12 @@ class EditTodoItemViewController: UIViewController {
     
     @IBOutlet weak var ContentTextView: UITextView!
     
-    var todo: Todo
-    
-    var vm: EditTodoItemViewModel
+    let index: Int
     
     let disposeBag = DisposeBag()
     
-    init(dependency: Todo) {
-        todo = dependency
-        vm = EditTodoItemViewModel(dependency: dependency)
+    init(dependency: Int) {
+        index = dependency
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -34,9 +31,8 @@ class EditTodoItemViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        TitleTextField.text = todo.title
-        ContentTextView.text = todo.content
+        
+        let vm = EditTodoItemViewModel(dependency: index)
         
 //        TitleTextField.rx.text.asObservable()
 //            .subscribe(onNext: { [unowned self] t in
@@ -44,6 +40,18 @@ class EditTodoItemViewController: UIViewController {
 //                self.vm.titleEdit.onNext(edittedTitle)
 //            })
 //            .disposed(by: disposeBag)
+        
+        rx.sentMessage(#selector(viewWillAppear(_:)))
+            .map { _ in }
+            .bind(to: vm.viewWillAppear)
+            .disposed(by: disposeBag)
+        
+        vm.editTodo
+            .bind(onNext: { [unowned self] todo in
+                self.TitleTextField.text = todo.title
+                self.ContentTextView.text = todo.content
+            })
+            .disposed(by: disposeBag)
         
         TitleTextField.rx.text.orEmpty
             .bind(to: vm.titleEdit)
